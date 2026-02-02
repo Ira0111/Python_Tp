@@ -3,24 +3,24 @@ from classes.Member import*
 class Operator(Member):
     def __init__(self, first_name, last_name, gender, age, role, experience = 0):
         super().__init__(first_name, last_name, gender, age)
-        self.__role = role.lower()
-        self.__experience = experience
+        self._role = role.lower()
+        self._experience = experience
 
     @property
     def role(self):
-        return self.__role
+        return self._role
 
     @role.setter
     def role(self, value):
-        self.__role = value
+        self._role = value
 
     @property
     def experience(self):
-        return self.__experience
+        return self._experience
 
     @experience.setter
     def experience(self, value):
-        self.__experience = value
+        self._experience = value
 
     def act(self):
         match self.role:

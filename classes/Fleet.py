@@ -1,27 +1,28 @@
 from classes.Member import*
 from classes.Operator import*
 from classes.Spaceship import*
+from classes.Mentalist import*
 
 class Fleet:
     def __init__(self, name):
-        self.__name = name
-        self.__spaceships = []
+        self._name = name
+        self._spaceships = []
 
     @property
     def name(self):
-        return self.__name
+        return self._name
 
     @name.setter
     def name(self, value):
-        self.__name = value
+        self._name = value
 
     @property
     def spaceships(self):
-        return self.__spaceships
+        return self._spaceships
 
     @spaceships.setter
     def spaceships(self, value):
-        self.__spaceships = value
+        self._spaceships = value
 
     def append_spaceship(self, spaceship: Spaceship):
         if len(self.spaceships) >= 15:
@@ -30,12 +31,12 @@ class Fleet:
             self.spaceships.append(spaceship)
 
     def remove_spaceship(self, ship_name):
-        for ship in self.__spaceships:
+        for ship in self.spaceships:
             if ship.name.lower() == ship_name.lower():
-                self.__spaceships.remove(ship)
-                print(f"Le vaisseau {ship_name} a été supprimé de la flotte {self.__name}")
+                self.spaceships.remove(ship)
+                print(f"Le vaisseau {ship_name} a été supprimé de la flotte {self.name}")
                 return True
-        print(f"Aucun vaisseau nommé {ship_name} trouvé dans la flotte {self.__name}")
+        print(f"Aucun vaisseau nommé {ship_name} trouvé dans la flotte {self.name}")
         return False
 
     def statistics(self):

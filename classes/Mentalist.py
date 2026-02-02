@@ -4,15 +4,15 @@ from classes.Operator import*
 class Mentalist(Member):
     def __init__(self, first_name, last_name, gender, age, mana = 100):
         super().__init__(first_name, last_name, gender, age)
-        self.__mana = mana 
+        self._mana = mana 
 
     @property
     def mana(self):
-        return self.__mana
+        return self._mana
 
     @mana.setter
     def mana(self, value):
-        self.__mana = max(0, min(100, value))
+        self._mana = max(0, min(100, value))
 
     def act(self, operator):
         if self.mana <20:
@@ -23,7 +23,7 @@ class Mentalist(Member):
             operator.act()
         
     def recharge_mana(self):
-        self.mana = min(100, self.__mana + 50)
+        self.mana = min(100, self._mana + 50)
         print(self.first_name, self.last_name, "recharge son mana à", self.mana)
 
     def update_mentalist(self, first_name=None, last_name=None, gender=None, age=None, mana=None):

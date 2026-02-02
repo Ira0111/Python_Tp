@@ -4,43 +4,43 @@ from classes.Mentalist import*
 
 class Spaceship:
     def __init__(self, name, shipType, condition="opérationnel"):
-        self.__name = name
-        self.__shipType = shipType.lower()
-        self.__crew = []
-        self.__condition = condition
+        self._name = name
+        self._shipType = shipType.lower()
+        self._crew = []
+        self._condition = condition
 
     @property
     def name(self):
-        return self.__name
+        return self._name
 
     @name.setter
     def name(self, value):
-        self.__name = value
+        self._name = value
 
     @property
     def shipType(self):
-        return self.__shipType
+        return self._shipType
 
     @shipType.setter
     def shipType(self, value):
-        self.__shipType = value
+        self._shipType = value
 
     @property
     def crew(self):
-        return self.__crew
+        return self._crew
 
     @crew.setter
     def crew(self, value):
-        self.__crew = value
+        self._crew = value
 
 
     @property
     def condition(self):
-        return self.__condition
+        return self._condition
 
     @condition.setter
     def condition(self, value):
-        self.__condition = value
+        self._condition = value
 
     def append_member(self, member: Member):
         if len(self.crew) >= 10:

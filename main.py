@@ -53,42 +53,41 @@ def save_data(fleet, file_name="data.json"):
 def custom_serializer(obj):
     if isinstance(obj, Spaceship):
         return {
-            "_Spaceship__name": obj.name,
-            "_Spaceship__shipType": obj.shipType,
-            "_Spaceship__condition": obj.condition,
-            "_Spaceship__crew": obj.crew,
+            "_name": obj.name,
+            "_shipType": obj.shipType,
+            "_condition": obj.condition,
+            "_crew": obj.crew,
         }
     if isinstance(obj, Fleet):
         return {
-            "_Fleet__name": obj.name,
-            "_Fleet__spaceships": obj.spaceships
+            "_name": obj.name,
+            "_spaceships": obj.spaceships
         }
     return obj.__dict__
 
 def load_data(file_name="data.json"):
     with open(file_name, "r", encoding="utf-8") as file:
         data = json.load(file)
-
-    fleet_name = data["_Fleet__name"]
+    fleet_name = data.get("_name", "Galactica")
     fleet = Fleet(fleet_name)
 
-    for ship_data in data["_Fleet__spaceships"]:
-        ship = Spaceship(ship_data["_Spaceship__name"], ship_data["_Spaceship__shipType"])
-        ship.condition = ship_data["_Spaceship__condition"]
+    for ship_data in data.get("_spaceships", []):
+        ship = Spaceship(ship_data.get("_name", "Unknown"), ship_data.get("_shipType", "marchand"))
+        ship.condition = ship_data.get("_condition", "opérationnel")
 
-        for member_data in ship_data["_Spaceship__crew"]:
-            first_name = member_data["_Member__first_name"]
-            last_name = member_data["_Member__last_name"]
-            gender = member_data["_Member__gender"]
-            age = member_data["_Member__age"]
+        for member_data in ship_data.get("_crew", []):
+            first_name = member_data.get("_first_name")
+            last_name = member_data.get("_last_name")
+            gender = member_data.get("_gender")
+            age = member_data.get("_age")
 
-            if "_Operator__role" in member_data:
-                role = member_data["_Operator__role"]
-                experience = member_data["_Operator__experience"]
+            if "_role" in member_data:
+                role = member_data.get("_role")
+                experience = member_data.get("_experience", 0)
                 crew_member = Operator(first_name, last_name, gender, age, role)
                 crew_member.experience = experience
             else:
-                mana = member_data.get("_Mentalist__mana", 0)
+                mana = member_data.get("_mana", 0)
                 crew_member = Mentalist(first_name, last_name, gender, age, mana)
 
             ship.append_member(crew_member)
