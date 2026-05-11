@@ -1,4 +1,4 @@
-# Alexane_Tp2
+# Python_Tp
 
 ## Description
 
@@ -46,7 +46,7 @@ Après certaines actions (ajout, suppression, action d'un membre), il y a 20% de
 ## Structure du Projet
 
 ```
-Alexane_Tp2/
+Python_Tp/
 ├── main.py                 # Fichier principal avec le menu et la logique
 ├── classes/
 │   ├── Member.py           # Classe de base pour les membres
